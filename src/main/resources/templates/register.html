@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>register</title>
 </head>
 <body>
-
+<form method="post" action="#" th:action="@{/user/new/submit}" th:object="${userForm}">
+    <h1>Nou user</h1>
+    <div><label for="id">Id</label><input type="text" id="id" placeholder="1" th:field="*{id}"></div>
+    <div><label for="username">Username</label><input type="text" id="username" placeholder="Username" th:field="*{name}"></div>
+    <div><label for="password">Contrasenya</label><input type="password" id="password" placeholder="Password" th:field="*{password}"></div>
+    <div><label for="roles">Rol</label><input type="text" id="roles" placeholder="Roles" th:field="*{rol}"></div>
+    <button type="submit">Enviar</button>
+</form>
 </body>
 </html>
