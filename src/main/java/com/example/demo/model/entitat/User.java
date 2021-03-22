@@ -13,4 +13,12 @@ public class User {
     private String name;
     private String password;
     private String rol;
+
+
+    public User(String user, String pwd) {
+        id ="1";
+        name=user;
+        password=pwd;
+        rol="USER";
+    }
 }

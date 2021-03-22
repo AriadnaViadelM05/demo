@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Afegir Empleat</title>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=YRL-tea1aK-X8mk5-2k34XFYujCVH7bGyw_uDEIpFHxDaORtUaJkCm4xmjn53EGzNsro_FVd2ONAlOB_zI8exgSsFT-GKe1MvAEVXcp0psc-QGgPhDoLKZiAe1GOPNAZI0wZ_NZQo8LY803pYNUNwp5WZV6rfRN41-rz5dTyaZVy5G_Edj3vn5zulvHRP7JPryfentE-l8H1fozMuFHG9mHBQEXRHpaMwnmUTYS6pstv7SYObUU631ljUH8c2W9o3Nwhfdn20s0Rq5IfG6DkiuTOmACP_Cyl4YZVQVnO_gCugNANYXLZMExf2DKV3Ro4hxcWy1YdqAZ135O3WWYKenHn8TZzv5enXS1Aq5EdukD7itX6h4LPx07iJBpQngROJ2Qy5XetlVENrDDki0tpCi0gOSxA8TBpwKI5jRS4fbaDla3KUYBNgAlhq8HPhd3-pTvvXV1pRKMYSuCmBO7fPg" charset="UTF-8"></script></head>
+<script type="text/javascript" charset="UTF-8"></script></head>
 <body>
 <!--<form method="post" action="#" th:action="@{/empleats/new/submit}" th:object="${empleatForm}">-->
 <form method="post" action="#" th:action="${empleatForm.id!=0} ?@{/empleats/edit/submit}:@{/empleats/new/submit}" th:object="${empleatForm}">
@@ -16,7 +16,7 @@
     Nom <input type="text" id="nom" placeholder="Nom" th:field="*{nom}"><br/>
     Email <input type="text" id="email" placeholder="a@a.com" th:field="*{email}"><br/>
     Telèfon <input type="text" id="telefon" placeholder="93123456" th:field="*{telefon}"><br/>
-    Directiu <input type="checkbox" id="directiu" th:field="*{esDirectiu}"><br/>
+    Directiu <input type="checkbox" id="mayor de edat" th:field="*{mayordeedad}"><br/>
     <button type="submit">Enviar</button>
 </form>
 </body>

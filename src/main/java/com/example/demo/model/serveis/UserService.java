@@ -1,6 +1,8 @@
 package com.example.demo.model.serveis;
 
 import com.example.demo.model.entitat.User;
+import com.example.demo.security.ConfiguracioSeguretatWeb;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -29,10 +31,11 @@ public class UserService {
     }
     @PostConstruct
     public void init() {
+        BCryptPasswordEncoder passwordEncoder =  new BCryptPasswordEncoder();
         users.addAll(
                 Arrays.asList(
-                        new User("1", "admin", "admin", "ADMIN"),
-                        new User("2", "user", "user", "USER")
+                        new User("1", "admin", passwordEncoder.encode("admin"), "ADMIN"),
+                        new User("2", "user", passwordEncoder.encode("user"), "USER")
                 )
         );
     }

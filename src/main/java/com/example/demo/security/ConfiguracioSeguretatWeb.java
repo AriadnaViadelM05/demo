@@ -19,7 +19,7 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
    private UserDetailsService userDetailsService;
 
    @Bean
-   public PasswordEncoder passwordEncoder() {
+   public BCryptPasswordEncoder passwordEncoder() {
       return new BCryptPasswordEncoder();
    }
 
@@ -36,12 +36,11 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
               .authorizeRequests()
               .antMatchers("/", "/index").permitAll()
               .antMatchers("/empleats/new", "/empleats/eliminar").hasRole("ADMIN")
-              .antMatchers("/empleats/edit/{id}").hasRole("USER")
               .anyRequest().authenticated()
               .and()
               .formLogin()
               .loginPage("/login").permitAll()
-              .failureUrl("/login_error")
+              .failureUrl("/error_login")
               .and()
               .logout().permitAll();
    }

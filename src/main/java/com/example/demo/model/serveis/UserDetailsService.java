@@ -2,6 +2,7 @@ package com.example.demo.model.serveis;
 
 import com.example.demo.model.entitat.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +14,6 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Autowired
     private UserService servei;
 
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
@@ -23,10 +23,12 @@ public class UserDetailsService implements org.springframework.security.core.use
         if (u != null) {
             builder = org.springframework.security.core.userdetails.User.withUsername(s);
             builder.disabled(false);
-            builder.password(new BCryptPasswordEncoder().encode(u.getPassword()));
+            builder.password(u.getPassword());
             builder.roles(u.getRol());
         }
         else throw new UsernameNotFoundException("user no existeix");
         return builder.build();
     }
+
+
 }
