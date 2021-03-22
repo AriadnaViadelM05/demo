@@ -8,33 +8,46 @@ import java.util.*;
 
 @Service
 public class EmpleatService {
-    private List<Empleat> repositori = new ArrayList<>();
+    private List<Empleat> empleats = new ArrayList<>();
 
     public void afegir(Empleat e) {
-        repositori.add(e);
+        empleats.add(e);
     }
+
     public List<Empleat> llistat() {
-        return repositori;
+        return empleats;
     }
-    public List<Empleat> llistatOrdenatPerNom(){
-        Collections.sort(repositori, new Comparator<Empleat>() {
-            @Override
-            public int compare(Empleat t1, Empleat t2) {
-                return (t1.getNom()).compareTo((t2.getNom()));
+
+    public Empleat consultaPerId(int id) {
+        Empleat busqueda = new Empleat();
+        for (Empleat e : empleats) {
+            if (e.getId() == id) {
+                busqueda = e;
+                break;
             }
-        });
-        return repositori;
-    };
+        }
+        return busqueda;
+    }
+
+    public void eliminarPerId(int id) {
+
+        empleats.removeIf(e -> e.getId() == id);
+    }
+
+    public void substituir(Empleat e) {
+        eliminarPerId(e.getId());
+        empleats.add(e);
+    }
+
+
 
     @PostConstruct
     public void init() {
-        repositori.addAll(
+        empleats.addAll(
                 Arrays.asList(
                         new Empleat(1, "Montse Madridejos", "montse@itb.cat", "677123456",true),
                         new Empleat(2, "Alberto Vila", "alberto@itb.cat", "699876543",false),
-                        new Empleat(3, "Robert López", "robert@bbc.com", "123456789",true),
-                        new Empleat(4, "zzzzzzzzzzzzzzz", "robert@bbc.com", "123456789",true),
-                        new Empleat(5, "aaaaaaaaaaaaaaaaaaa", "robert@bbc.com", "123456789",true)
+                        new Empleat(3, "Robert López", "robert@bbc.com", "123456789",true)
                 )
         );
     }

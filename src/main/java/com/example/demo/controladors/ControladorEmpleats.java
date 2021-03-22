@@ -6,9 +6,7 @@ import com.example.demo.model.serveis.EmpleatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ControladorEmpleats {
@@ -18,12 +16,25 @@ public class ControladorEmpleats {
     @GetMapping("/empleats/list")
     public String llistar(Model m){
         m.addAttribute("llistatEmpleats",servei.llistat());
-        return "llistat";
+        return "list";
     }
-    @GetMapping("/empleats/nom")
-    public String llistarnom(Model m){
-        m.addAttribute("llistarnom",servei.llistatOrdenatPerNom());
-        return "llistarnom";
+
+    @GetMapping("/empleats/eliminar")
+    public String eliminarEmpleat(@RequestParam("id") int id) {
+        servei.eliminarPerId(id);
+        return "redirect:/empleats/list";
+    }
+
+    @GetMapping("/empleats/edit/{id}")
+    public String editarEmpleat(@PathVariable("id") int id, Model m) {
+        m.addAttribute("empleatForm", servei.consultaPerId(id));
+        return "afegir";
+    }
+
+    @PostMapping("empleats/edit/submit")
+    public String editarSubmit(@ModelAttribute("empleatForm") Empleat emp) {
+        servei.substituir(emp);
+        return "redirect:/empleats/list";
     }
 
     /* inici de l'aplicació. Anem a afegir Empleats amb un formulari*/
@@ -37,8 +48,8 @@ public class ControladorEmpleats {
     @PostMapping("empleats/new/submit")
     //empleatForm és el nom de l'objecte que es recull al formulari, el CommandObject (bean)
     //https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#handling-the-command-object
-    public String afegirSubmit(@ModelAttribute("empleatForm") Empleat emp){
-      servei.afegir(emp);
+    public String afegirSubmit(@ModelAttribute("empleatForm") Empleat empleat){
+      servei.afegir(empleat);
       return "redirect:/empleats/list";
     }
 }
