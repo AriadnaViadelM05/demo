@@ -14,14 +14,32 @@ public class ControladorEmpleats {
     private EmpleatService servei;
 
     @GetMapping("/empleats/list")
-    public String llistar(Model m){
-        m.addAttribute("llistatEmpleats",servei.llistat());
+    public String llistar(Model m) {
+        m.addAttribute("llistaEmpleats", servei.llistat());
         return "list";
+    }
+
+    @GetMapping("/empleats/new")
+    public String afegirEmpleat(Model m) {
+        m.addAttribute("empleatForm", new Empleat());
+        return "afegir";
+    }
+
+    @PostMapping("/empleats/new/submit")
+    public String afegirSubmit(@ModelAttribute("empleatForm") Empleat emp) {
+        servei.afegir(emp);
+        return "redirect:/empleats/list";
     }
 
     @GetMapping("/empleats/eliminar")
     public String eliminarEmpleat(@RequestParam("id") int id) {
         servei.eliminarPerId(id);
+        return "redirect:/empleats/list";
+    }
+
+    @PostMapping("/empleats/edit/submit")
+    public String editarSubmit(@ModelAttribute("empleatForm") Empleat emp) {
+        servei.substituir(emp);
         return "redirect:/empleats/list";
     }
 
@@ -31,25 +49,15 @@ public class ControladorEmpleats {
         return "afegir";
     }
 
-    @PostMapping("empleats/edit/submit")
-    public String editarSubmit(@ModelAttribute("empleatForm") Empleat emp) {
-        servei.substituir(emp);
-        return "redirect:/empleats/list";
+    @GetMapping("/empleats/listord")
+    public String llistarOrdenat(Model m) {
+        m.addAttribute("llistaEmpleats", servei.llistatOrdenatPerNom());
+        return "list";
     }
 
-    /* inici de l'aplicació. Anem a afegir Empleats amb un formulari*/
-    @GetMapping("/empleats/new")
-    public String afegirEmpleat(Model m){
-        //cal instanciar l'empleat, pq sino el CommandObject no existeix al formulari
-       m.addAttribute("empleatForm",new Empleat());
-        return "afegir";
-    }
-
-    @PostMapping("empleats/new/submit")
-    //empleatForm és el nom de l'objecte que es recull al formulari, el CommandObject (bean)
-    //https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#handling-the-command-object
-    public String afegirSubmit(@ModelAttribute("empleatForm") Empleat empleat){
-      servei.afegir(empleat);
-      return "redirect:/empleats/list";
+    @GetMapping("/empleats/consultaid")
+    public String consultaPerId(@RequestParam("id") int id, Model m) {
+        m.addAttribute("llistaEmpleats", servei.consultaPerId(id));
+        return "list";
     }
 }

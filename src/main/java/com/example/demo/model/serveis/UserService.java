@@ -1,7 +1,9 @@
 package com.example.demo.model.serveis;
 
 import com.example.demo.model.entitat.User;
+import com.example.demo.repositoris.RepositoriUser;
 import com.example.demo.security.ConfiguracioSeguretatWeb;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,32 +14,26 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private List<User> users = new ArrayList<>();
-
-    public User consultaNom(String name) {
-        User busqueda = new User();
-        for (User e : users) {
-            if (e.getName().equals(name)) {
-                busqueda = e;
-                break;
-            }
-        }
-        return busqueda;
+    @Autowired
+    private RepositoriUser users;
+    public void afegir(User e) {
+        System.out.println("xifrat"+ e);
+        users.save(e);
+    }
+    public List<User> llistat() {
+        return users.findAll();
     }
 
-    public void afegir(User u) {
-
-        users.add(u);
+    public User consultaPerId(String s) {
+        return users.findById(s).orElse(null);
     }
+
+
     @PostConstruct
     public void init() {
-        BCryptPasswordEncoder passwordEncoder =  new BCryptPasswordEncoder();
-        users.addAll(
-                Arrays.asList(
-                        new User("1", "admin", passwordEncoder.encode("admin"), "ADMIN"),
-                        new User("2", "user", passwordEncoder.encode("user"), "USER")
-                )
-        );
+        users.save( new User("admin",new BCryptPasswordEncoder().encode("admin"), "ADMIN"));
+        users.save( new User("user", new BCryptPasswordEncoder().encode("user"), "USER"));
+
     }
 
 

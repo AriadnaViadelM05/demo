@@ -18,7 +18,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
 
-        User u = servei.consultaNom(s); //User POJO
+        User u = servei.consultaPerId(s); //User POJO
         org.springframework.security.core.userdetails.User.UserBuilder builder = null;
         if (u != null) {
             builder = org.springframework.security.core.userdetails.User.withUsername(s);

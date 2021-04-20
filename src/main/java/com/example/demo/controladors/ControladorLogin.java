@@ -14,21 +14,23 @@ public class ControladorLogin {
     @Autowired
     private UserService servei;
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+
     @GetMapping("/register")
-    public String register(Model m) {
+    public String afegirUsuari(Model m) {
         m.addAttribute("userForm", new User());
         return "register";
     }
 
-    @PostMapping("user/new/submit")
-    public String afegirUserSubmit(@ModelAttribute("userForm") User user) {
-        servei.afegir(user);
+    @PostMapping("/register")
+    public String afegirSubmit(@ModelAttribute User user) {
+        User aux = new User(user.getUsername(), user.getPassword());
+        servei.afegir(aux);
         return "redirect:/login";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @GetMapping("/error_login")

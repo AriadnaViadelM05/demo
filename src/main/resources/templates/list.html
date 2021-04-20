@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Llistat</title>
-    <link rel="stylesheet" href="css.css">
 <script type="text/javascript"charset="UTF-8"></script></head>
 <body>
 <table>
@@ -20,7 +19,7 @@
     </tr></br>
     </thead>
     <tbody>
-    <tr th:each="emp : ${llistatEmpleats}">
+    <tr th:each="emp : ${llistaEmpleats}">
         <td th:text="${emp.id}">ID</td>
         <td th:text="${emp.nom}">Pepe Pérez</td>
         <td th:text="${emp.email}">pepe.perez@ole.com</td>

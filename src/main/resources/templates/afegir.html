@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Afegir Empleat</title>
-    <link rel="stylesheet" href="css.css">
 <script type="text/javascript" charset="UTF-8"></script></head>
 <body>
 <!--<form method="post" action="#" th:action="@{/empleats/new/submit}" th:object="${empleatForm}">-->
@@ -17,8 +16,11 @@
     Nom <input type="text" id="nom" placeholder="Nom" th:field="*{nom}"><br/>
     Email <input type="text" id="email" placeholder="a@a.com" th:field="*{email}"><br/>
     Telèfon <input type="text" id="telefon" placeholder="93123456" th:field="*{telefon}"><br/>
-    Directiu <input type="checkbox" id="mayor de edat" th:field="*{mayordeedad}"><br/>
+    Mayor de edat <input type="checkbox" id="mayor de edat" th:field="*{mayordeedad}"><br/>
     <button type="submit">Enviar</button>
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sortir (Sign Out)"/>
 </form>
 </body>
 </html>

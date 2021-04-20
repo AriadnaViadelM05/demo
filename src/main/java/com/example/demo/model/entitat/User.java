@@ -1,24 +1,38 @@
 package com.example.demo.model.entitat;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class User {
-    private String id;
-    private String name;
+@Entity
+public class User{
+    @Id
+    private String username;
     private String password;
     private String rol;
-
+//    public User() {
+//        rol = "user";
+//    }
 
     public User(String user, String pwd) {
-        id ="1";
-        name=user;
-        password=pwd;
-        rol="USER";
+        username=user;
+        password=new BCryptPasswordEncoder().encode(pwd);
+        rol="user";
     }
+
+//    public User(String username, String password, String rol) {
+//        this.username = username;
+//        this.password = new BCryptPasswordEncoder().encode(password);;
+//        this.rol = rol;
+//    }
+
+
 }

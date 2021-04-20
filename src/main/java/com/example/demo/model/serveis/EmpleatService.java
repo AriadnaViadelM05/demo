@@ -9,36 +9,36 @@ import java.util.*;
 @Service
 public class EmpleatService {
     private List<Empleat> empleats = new ArrayList<>();
-
     public void afegir(Empleat e) {
         empleats.add(e);
     }
-
     public List<Empleat> llistat() {
         return empleats;
     }
 
-    public Empleat consultaPerId(int id) {
-        Empleat busqueda = new Empleat();
-        for (Empleat e : empleats) {
-            if (e.getId() == id) {
-                busqueda = e;
-                break;
+    public List<Empleat> llistatOrdenatPerNom(){
+        List<Empleat> llistatOrdenatPerNom = empleats;
+        llistatOrdenatPerNom.sort(((o1, o2) -> o1.getNom().compareTo(o2.getNom())));
+        return llistatOrdenatPerNom;
+    }
+    public Empleat consultaPerId(int id){
+        for (Empleat empleat : empleats) {
+            if (empleat.getId()==id){
+                return empleat;
             }
         }
-        return busqueda;
+        return null;
     }
-
-    public void eliminarPerId(int id) {
-
-        empleats.removeIf(e -> e.getId() == id);
+    public void eliminarPerId(int id){
+        empleats.removeIf(empleat -> empleat.getId() == id);
     }
-
     public void substituir(Empleat e) {
-        eliminarPerId(e.getId());
-        empleats.add(e);
+        for (int i = 0; i < empleats.size(); i++) {
+            if (empleats.get(i).getId() == e.getId()){
+                empleats.set(i,e);
+            }
+        }
     }
-
 
 
     @PostConstruct

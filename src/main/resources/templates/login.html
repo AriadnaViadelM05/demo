@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
-    <link rel="stylesheet" href="css.css">
 </head>
 <body>
 <div th:if="${param.error}">
@@ -14,6 +13,8 @@
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Entrar"/></div>
 </form>
-
+<form th:action="@{/register}" method="get">
+    <input type="submit" value="Registrar-se"/>
+</form>
 </body>
 </html>

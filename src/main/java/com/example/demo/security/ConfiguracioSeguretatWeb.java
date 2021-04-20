@@ -34,15 +34,18 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
       http
 
               .authorizeRequests()
-              .antMatchers("/", "/index").permitAll()
+              .antMatchers("/", "/register", "/login", "/h2-console/**", "/registre","/llistat").permitAll()
               .antMatchers("/empleats/new", "/empleats/eliminar").hasRole("ADMIN")
               .anyRequest().authenticated()
               .and()
               .formLogin()
-              .loginPage("/login").permitAll()
+              .loginPage("/login")
               .failureUrl("/error_login")
               .and()
-              .logout().permitAll();
+              .logout()
+              .permitAll();
+      http.csrf().disable(); //per h2-console
+      http.headers().frameOptions().disable();
    }
 
 }
