@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User{
+public class MyUser {
     @Id
     private String username;
     private String password;
@@ -22,7 +22,7 @@ public class User{
 //        rol = "user";
 //    }
 
-    public User(String user, String pwd) {
+    public MyUser(String user, String pwd) {
         username=user;
         password=new BCryptPasswordEncoder().encode(pwd);
         rol="user";
