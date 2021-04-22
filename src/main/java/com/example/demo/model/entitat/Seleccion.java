@@ -22,8 +22,8 @@ public class Seleccion implements Serializable {
     @GeneratedValue
     private long id;
     private String nom;
-    @OneToMany(mappedBy ="seleccion")
-    private Set<Jugador> jugadors;
+//    @OneToMany(mappedBy ="seleccion")
+//    private Set<Jugador> jugadors;
 
     public Seleccion(String nom) {
         this.nom = nom;

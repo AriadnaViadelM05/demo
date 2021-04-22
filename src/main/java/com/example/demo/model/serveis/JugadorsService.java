@@ -35,14 +35,15 @@ public class JugadorsService {
 
     @PostConstruct
     public void init() {
-        Seleccion seleccion = new Seleccion("USA");
+//        Seleccion seleccion = new Seleccion("USA");
         jugadors.saveAll(
                 Arrays.asList(
-                        new Jugador("LeBron James", 28, "LeBronJames@gmail.com", "677123456",seleccion),
-                        new Jugador("Kobe Bryant", 25, "KobeBryant@gmail.com", "699876543",seleccion),
-                        new Jugador("Bill Russell", 21, "BillRussell@gmail.com", "653456789",seleccion),
-                        new Jugador("Larry Bird ", 30, "LarryBird@gmail.com", "693456789",seleccion),
-                        new Jugador("Shaquille O'neal", 19, "ShaquilleO'neal@gmail.com", "613456789",seleccion)
+                        new Jugador("LeBron James", 28, "LeBronJames@gmail.com", "677123456"),
+                        new Jugador("Kobe Bryant", 25, "KobeBryant@gmail.com", "699876543"),
+                        new Jugador("Bill Russell", 21, "BillRussell@gmail.com", "653456789"),
+                        new Jugador("Larry Bird ", 30, "LarryBird@gmail.com", "693456789"),
+                        new Jugador("Shaquille O'neal", 19, "ShaquilleO'neal@gmail.com", "613456789")
+
 
                 )
         );

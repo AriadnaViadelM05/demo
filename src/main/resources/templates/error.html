@@ -6,8 +6,8 @@
 </head>
 <body>
 <span th:switch="${status}">
-    <span th:case="1">URL no encontrada</span>
-    <span th:case="2">URl no autorizada</span>
+    <span th:case="404">URL no encontrada</span>
+    <span th:case="500">URl no autorizada</span>
     <a th:text="${status}"/>
 </span>
 </body>

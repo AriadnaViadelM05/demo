@@ -16,11 +16,6 @@
         <th>Seleccion</th>
         <th>Editar</th>
         <th>Eliminar</th>
-        this.nom = nom;
-        this.edad = edad;
-        this.email = email;
-        this.telefon = telefon;
-        this.seleccion = seleccion;
 
     </tr></br>
     </thead>
@@ -31,9 +26,8 @@
         <td th:text="${jug.edad}">20</td>
         <td th:text="${jug.email}">pepe.perez@ole.com</td>
         <td th:text="${jug.telefon}">123456789</td>
-        <td th:text="${jug.seleccion}">usa</td>
-        <td><a th:href="@{/empleats/edit/{id}(id=${jug.id})}">Editar</a> </td>
-        <td><a th:href="@{/empleats/eliminar(id=${jug.id})}">Eliminar</a> </td><br/>
+        <td><a th:href="@{/jugadors/edit/{id}(id=${jug.id})}">Editar</a> </td>
+        <td><a th:href="@{/jugadors/eliminar(id=${jug.id})}">Eliminar</a> </td><br/>
 
     </tr>
     </tbody>

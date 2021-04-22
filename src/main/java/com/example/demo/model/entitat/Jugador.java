@@ -18,14 +18,14 @@ public class Jugador implements Serializable {
     private int edad;
     private String email;
     private String telefon;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Seleccion seleccion;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private Seleccion seleccion;
 
-    public Jugador(String nom, int edad, String email, String telefon, Seleccion seleccion) {
+    public Jugador(String nom, int edad, String email, String telefon) {
         this.nom = nom;
         this.edad = edad;
         this.email = email;
         this.telefon = telefon;
-        this.seleccion = seleccion;
+//        this.seleccion = seleccion;
     }
 }
