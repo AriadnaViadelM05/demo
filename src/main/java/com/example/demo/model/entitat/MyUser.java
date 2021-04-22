@@ -25,7 +25,7 @@ public class MyUser {
     public MyUser(String user, String pwd) {
         username=user;
         password=new BCryptPasswordEncoder().encode(pwd);
-        rol="user";
+        rol="USER";
     }
 
 //    public User(String username, String password, String rol) {

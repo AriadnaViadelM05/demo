@@ -34,7 +34,7 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
       http
 
               .authorizeRequests()
-              .antMatchers("/", "/register", "/login", "/h2-console/**", "/registre","/llistat").permitAll()
+              .antMatchers("/", "/register", "/login", "/registre","/llistat").permitAll()
               .antMatchers("/jugadors/new", "/jugadors/edit/submit", "/jugadors/edit/{id}").hasRole("ADMIN")
               .anyRequest().authenticated()
               .and()
@@ -44,8 +44,6 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
               .and()
               .logout()
               .permitAll();
-      http.csrf().disable(); //per h2-console
-      http.headers().frameOptions().disable();
    }
 
 }
