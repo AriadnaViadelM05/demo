@@ -35,7 +35,7 @@ public class ConfiguracioSeguretatWeb extends WebSecurityConfigurerAdapter {
 
               .authorizeRequests()
               .antMatchers("/", "/register", "/login", "/h2-console/**", "/registre","/llistat").permitAll()
-              .antMatchers("/empleats/new", "/empleats/eliminar").hasRole("ADMIN")
+              .antMatchers("/jugadors/new", "/jugadors/edit/submit", "/jugadors/edit/{id}").hasRole("ADMIN")
               .anyRequest().authenticated()
               .and()
               .formLogin()

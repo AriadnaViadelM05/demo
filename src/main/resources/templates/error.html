@@ -7,7 +7,8 @@
 <body>
 <span th:switch="${status}">
     <span th:case="404">URL no encontrada</span>
-    <span th:case="500">URl no autorizada</span>
+    <span th:case="505">URl no autorizada</span>
+    <span th:case="403">URl no autorizada</span>
     <a th:text="${status}"/>
 </span>
 </body>
